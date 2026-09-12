@@ -189,11 +189,11 @@ content += `> ✅ 成功: ${successCount}  ❌ 失败: ${failCount}\n`
 
 for (const r of notifyResults) {
   content = content + `**【${r.nickname}】**\n\n`
-  content += `🎵 听歌领取: ${r.listen}\n`
-  content += `🎁 VIP领取: ${r.vipClaim} 次\n`
-  content += `⏰ VIP到期: ${r.vipExpiry}\n`
+  content = content +  `🎵 听歌领取: ${r.listen}\n`
+  content = content +  `🎁 VIP领取: ${r.vipClaim} 次\n`
+  content = content +  `⏰ VIP到期: ${r.vipExpiry}\n`
   if (r.error) {
-    content += `  ⚠️ 错误: ${r.error}\n`
+    content = content +  `  ⚠️ 错误: ${r.error}\n`
   }
 }
 

@@ -180,18 +180,18 @@ async function main() {
   }
 
   // 构建通知内容（放在 secret 更新之后、错误抛出之前，确保始终执行）
-  const title = `酷狗签到${hasError ? '异常' : '成功'} ${date}`
-  let content = `📅 日期: ${date}<br>`
-  content += `📊 账号数: ${notifyResults.length}<br>`
+  const title = `<br> 酷狗签到${hasError ? '异常' : '成功'} ${date} <br>`
+  let content = `<br> 📅 日期: ${date}<br>`
+  content += `<br> 📊 账号数: ${notifyResults.length} <br>`
   const successCount = notifyResults.filter(r => r.status === '成功').length
   const failCount = notifyResults.length - successCount
-  content += `✅ 成功: ${successCount}  ❌ 失败: ${failCount}<br>`
+  content += `<br> ✅ 成功: ${successCount}  ❌ 失败: ${failCount} <br>`
 
   for (const r of notifyResults) {
-    content += `\n【${r.nickname}】<br>`
-    content += `  🎵 听歌领取: ${r.listen}<br>`
-    content += `  🎁 VIP领取: ${r.vipClaim} 次<br>`
-    content += `  ⏰ VIP到期: ${r.vipExpiry}<br>`
+    content += `<br> 【${r.nickname}】<br>`
+    content += `<br>  🎵 听歌领取: ${r.listen}<br>`
+    content += `<br>  🎁 VIP领取: ${r.vipClaim} 次<br>`
+    content += `<br>  ⏰ VIP到期: ${r.vipExpiry}<br>`
     if (r.error) {
       content += `  ⚠️ 错误: ${r.error}<br>`
     }

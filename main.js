@@ -6,6 +6,7 @@ import { close_api, delay, send, startService, waitForApi } from "./utils/utils.
 
 async function main() {
 
+  console.log('>>> 测试代码已生效 <<<')
   const USERINFO = process.env.USERINFO
   let needRefresh = false
   if (!USERINFO) {

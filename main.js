@@ -189,10 +189,14 @@ content += `✅ 成功: ${successCount}  ❌ 失败: ${failCount}   \n\n`
 
 for (const r of notifyResults) {
   content += `\n【${r.nickname}】   \n\n`
+  content += `   \n\n`
   content += `  🎵 听歌领取: ${r.listen}   \n\n`
+  content += `   \n\n`
   content += `  🎁 VIP领取: ${r.vipClaim} 次   \n\n`
+  content += `   \n\n`
   content += `  ⏰ VIP到期: ${r.vipExpiry}   \n\n`
   if (r.error) {
+    content += `   \n\n`
     content += `  ⚠️ 错误: ${r.error}   \n\n`
   }
 }

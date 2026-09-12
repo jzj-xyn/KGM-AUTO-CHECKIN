@@ -182,43 +182,25 @@ async function main() {
 
 
   
-   // 构建通知内容（放在 secret 更新之后、错误抛出之前，确保始终执行）
-// const NL = String.fromCharCode(10)
-// const title = `酷狗签到${hasError ? '异常' : '成功'} ${date}`
-// let content = `📅 日期: ${date}${NL}`
-// content += `📊 账号数: ${notifyResults.length}${NL}${NL}`
-// const successCount = notifyResults.filter(r => r.status === '成功').length
-// const failCount = notifyResults.length - successCount
-// content += `✅ 成功: ${successCount}  ❌ 失败: ${failCount}${NL}${NL}`
-
-// for (const r of notifyResults) {
-//   content += `【${r.nickname}】${NL}`
-//   content += `🎵 听歌领取: ${r.listen}${NL}`
-//   content += `🎁 VIP领取: ${r.vipClaim} 次${NL}`
-//   content += `⏰ VIP到期: ${r.vipExpiry}${NL}`
-//   if (r.error) {
-//     content += `⚠️ 错误: ${r.error}${NL}`
-//   }
-//   content += NL
-// }
+   构建通知内容（放在 secret 更新之后、错误抛出之前，确保始终执行）
+const NL = String.fromCharCode(10)
 const title = `酷狗签到${hasError ? '异常' : '成功'} ${date}`
-const lines = [
-  `📅 日期: ${date}`,
-  ``,
-  `📊 账号数: ${notifyResults.length}`,
-  ``,
-  `✅ 成功: ${successCount}  ❌ 失败: ${failCount}`,
-  ``,
-]
+let content = `📅 日期: ${date}${NL}`
+content += `📊 账号数: ${notifyResults.length}${NL}${NL}`
+const successCount = notifyResults.filter(r => r.status === '成功').length
+const failCount = notifyResults.length - successCount
+content += `✅ 成功: ${successCount}  ❌ 失败: ${failCount}${NL}${NL}`
+
 for (const r of notifyResults) {
-  lines.push(`【${r.nickname}】`)
-  lines.push(`🎵 听歌领取: ${r.listen}`)
-  lines.push(`🎁 VIP领取: ${r.vipClaim} 次`)
-  lines.push(`⏰ VIP到期: ${r.vipExpiry}`)
-  if (r.error) lines.push(`⚠️ 错误: ${r.error}`)
-  lines.push(``)
+  content += `【${r.nickname}】${NL}`
+  content += `🎵 听歌领取: ${r.listen}${NL}`
+  content += `🎁 VIP领取: ${r.vipClaim} 次${NL}`
+  content += `⏰ VIP到期: ${r.vipExpiry}${NL}`
+  if (r.error) {
+    content += `⚠️ 错误: ${r.error}${NL}`
+  }
+  content += NL
 }
-const content = lines.join('\n')
 
   // 发送通知（确保即使 secret 更新失败也能发出）
   try {

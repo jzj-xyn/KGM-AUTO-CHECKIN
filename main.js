@@ -182,24 +182,22 @@ async function main() {
 
 
   
-   构建通知内容（放在 secret 更新之后、错误抛出之前，确保始终执行）
-const NL = String.fromCharCode(10)
+  // 构建通知内容（放在 secret 更新之后、错误抛出之前，确保始终执行）
 const title = `酷狗签到${hasError ? '异常' : '成功'} ${date}`
-let content = `📅 日期: ${date}${NL}`
-content += `📊 账号数: ${notifyResults.length}${NL}${NL}`
+let content = `📅 日期: ${date}\n\n`
+content += `📊 账号数: ${notifyResults.length}\n\n`
 const successCount = notifyResults.filter(r => r.status === '成功').length
 const failCount = notifyResults.length - successCount
-content += `✅ 成功: ${successCount}  ❌ 失败: ${failCount}${NL}${NL}`
+content += `✅ 成功: ${successCount}  ❌ 失败: ${failCount}\n\n`
 
 for (const r of notifyResults) {
-  content += `【${r.nickname}】${NL}`
-  content += `🎵 听歌领取: ${r.listen}${NL}`
-  content += `🎁 VIP领取: ${r.vipClaim} 次${NL}`
-  content += `⏰ VIP到期: ${r.vipExpiry}${NL}`
+  content += `【${r.nickname}】\n\n`
+  content += `🎵 听歌领取: ${r.listen}\n\n`
+  content += `🎁 VIP领取: ${r.vipClaim} 次\n\n`
+  content += `⏰ VIP到期: ${r.vipExpiry}\n\n`
   if (r.error) {
-    content += `⚠️ 错误: ${r.error}${NL}`
+    content += `⚠️ 错误: ${r.error}\n\n`
   }
-  content += NL
 }
 
   // 发送通知（确保即使 secret 更新失败也能发出）

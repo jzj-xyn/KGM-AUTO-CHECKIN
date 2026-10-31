@@ -4,7 +4,7 @@ on:
   schedule:
     # GitHub Actions 的 schedule 只支持 UTC，不支持 timezone 字段。
     # UTC 16:01 = 北京时间 00:01（次日）
-    - cron: '01 15 * * *'
+    - cron: '01 10 * * *'
 permissions:
   contents: read
   actions: write
